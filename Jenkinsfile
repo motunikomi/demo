@@ -34,15 +34,6 @@ pipeline {
         archiveArtifacts 'build/libs/*.war'
       }
     }
-    stage('deploy'){
-        steps{
-            build job:'deploy-job',parameters:[
-              file(name:'TARGET_FILE',value:"build/libs/*.war")
-             ]
-        }
-    }
-
-
   }
   environment {
     resultPath = 'build/test-results/**/TEST-*.xml'
