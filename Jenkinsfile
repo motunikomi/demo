@@ -32,10 +32,37 @@ pipeline {
       steps {
         sh './gradlew bootWar'
         archiveArtifacts 'build/libs/*.war'
-        sshPublisher(masterNodeName: 'ssh_motu')
       }
     }
-
+    stage('deploy') {
+      steps {
+        sshPublisher(
+  publishers: [
+    sshPublisherDesc(
+      configName: 'ssh_motu',
+      transfers: [
+        sshTransfer(
+          excludes: '',
+          execCommand: '',
+          execTimeout: 120000,
+          flatten: false,
+          makeEmptyDirs: false,
+          noDefaultExcludes: false,
+          patternSeparator: '[, ]+',
+          remoteDirectory: 'war',
+          remoteDirectorySDF: false,
+          removePrefix: '',
+          sourceFiles: 'build/libs/*.war'
+        )
+      ],
+      usePromotionTimestamp: false,
+      useWorkspaceInPromotion: false,
+      verbose: false
+    )
+  ]
+)
+      }
+    }
   }
   environment {
     resultPath = 'build/test-results/**/TEST-*.xml'
