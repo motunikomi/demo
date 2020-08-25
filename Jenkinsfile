@@ -51,7 +51,7 @@ pipeline {
           patternSeparator: '[, ]+',
           remoteDirectory: 'war',
           remoteDirectorySDF: false,
-          removePrefix: '',
+          removePrefix: 'build/libs',
           sourceFiles: 'build/libs/*.war'
         )
       ],
