@@ -32,8 +32,10 @@ pipeline {
       steps {
         sh './gradlew bootWar'
         archiveArtifacts 'build/libs/*.war'
+        sshPublisher(masterNodeName: 'ssh_motu')
       }
     }
+
   }
   environment {
     resultPath = 'build/test-results/**/TEST-*.xml'
