@@ -49,7 +49,7 @@ pipeline {
           makeEmptyDirs: false,
           noDefaultExcludes: false,
           patternSeparator: '[, ]+',
-          remoteDirectory: 'war',
+          remoteDirectory: '',
           remoteDirectorySDF: false,
           removePrefix: 'build/libs',
           sourceFiles: 'build/libs/*.war'
