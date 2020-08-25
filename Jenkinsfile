@@ -31,7 +31,7 @@ pipeline {
     stage('deploy') {
       steps {
         sh './gradlew bootWar'
-        archiveArtifacts '\\build\\libs\\*.war'
+        archiveArtifacts './build/libs/*.war'
       }
     }
 
