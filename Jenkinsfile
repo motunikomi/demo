@@ -24,13 +24,17 @@ pipeline {
             sh './gradlew check'
           }
         }
+
       }
     }
+
     stage('deploy') {
       steps {
-       sh './gradlew bootWar'
+        sh './gradlew bootWar'
+        archiveArtifacts '\\build\\libs\\*.war'
       }
     }
+
   }
   environment {
     resultPath = 'build/test-results/**/TEST-*.xml'
